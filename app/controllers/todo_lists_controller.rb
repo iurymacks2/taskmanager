@@ -25,7 +25,7 @@ class TodoListsController < ApplicationController
   # POST /todo_lists.json
   def create
     @todo_list = TodoList.new(todo_list_params)
-    @post.user = current_user
+    @todo_list.user = current_user
     respond_to do |format|
       if @todo_list.save
         format.html { redirect_to @todo_list, notice: 'Todo list was successfully created.' }
