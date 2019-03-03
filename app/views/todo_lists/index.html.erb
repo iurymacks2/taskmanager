@@ -1,7 +1,6 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Todo Lists</h1>
-
 <table>
   <thead>
     <tr>
@@ -17,13 +16,16 @@
       <tr>
         <td><%= todo_list.title %></td>
         <td><%= todo_list.description %></td>
-        <td><%= todo_list.user %></td>
+        <td><%= todo_list.user.username %></td>
         <td><%= link_to 'Show', todo_list %></td>
         <% if current_user && current_user.admin %>
           <td><%= link_to 'Edit', edit_todo_list_path(todo_list) %></td>
           <td><%= link_to 'Destroy', todo_list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
       </tr>
+    <% end %>
+    <% if current_user %>
+      <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
     <% end %>
   </tbody>
 </table>
