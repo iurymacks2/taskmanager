@@ -13,6 +13,7 @@
 
   <tbody>
     <% @todo_lists.each do |todo_list| %>
+    <% if todo_list.user_id == current_user.id %>
       <tr>
         <td><%= todo_list.title %></td>
         <td><%= todo_list.description %></td>
@@ -23,6 +24,8 @@
           <td><%= link_to 'Destroy', todo_list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
       </tr>
+
+    <% end %>
     <% end %>
     <% if current_user %>
       <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
