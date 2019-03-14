@@ -13,18 +13,17 @@
 
   <tbody>
     <% @todo_lists.each do |todo_list| %>
-    <% if todo_list.user_id == current_user.id %>
+    <% if todo_list.user_id == current_user.id || current_user.admin %>
       <tr>
         <td><%= todo_list.title %></td>
         <td><%= todo_list.description %></td>
         <td><%= todo_list.user.username %></td>
         <td><%= link_to 'Show', todo_list %></td>
-        <% if current_user && current_user.admin %>
+        <% if current_user %>
           <td><%= link_to 'Edit', edit_todo_list_path(todo_list) %></td>
           <td><%= link_to 'Destroy', todo_list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
       </tr>
-
     <% end %>
     <% end %>
     <% if current_user %>
